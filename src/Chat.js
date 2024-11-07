@@ -13,6 +13,10 @@ const ChatComponent = () => {
     const [savedContext, setSavedContext] = useState(''); // State to store saved context
     const messagesEndRef = useRef(null); // Create a ref for auto-scrolling
 
+    const resetZoom = () => {
+        document.body.style.zoom = '1'; // Reset zoom level
+    };
+
     // Scroll to the latest message when the messages change
     const scrollToBottom = () => {
         messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
@@ -38,7 +42,7 @@ const ChatComponent = () => {
     // Handle form submission to send a message
     const handleSubmit = async (e) => {
         e.preventDefault();
-
+        resetZoom();
         const userMessage = input;
         appendMessage({ sender: 'user', text: userMessage });
         setInput('');
